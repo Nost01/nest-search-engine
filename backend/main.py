@@ -46,6 +46,35 @@ def health_check():
     
 # Search Endpoints
 
+@app.get("/search/all")
+def search_all(keyword: str = Query(..., description="Search keyword")):
+    conn = get_db_connection()
+    cursor = conn.cursor(dictionary=True)
+
+    query = """
+        SELECT * FROM Employees
+        WHERE LOWER(FirstName) LIKE %s
+        OR LOWER(LastName) LIKE %s
+        OR LOWER(Department) LIKE %s
+        OR LOWER(VehiclePlate) LIKE %s
+        OR LOWER(VehicleDescription) LIKE %s
+        OR LOWER(VehicleColour) LIKE %s
+        OR LOWER(VehicleMake) LIKE %s
+        OR LOWER(VehicleModel) LIKE %s
+        OR LOWER(StallNumber) LIKE %s
+    """
+
+    kw = f"%{keyword.lower()}%"
+    params = [kw] * 9
+
+    cursor.execute(query, params)
+    results = cursor.fetchall()
+
+    cursor.close()
+    conn.close()
+
+    return {"employees": results}
+
 @app.get("/search")
 
 def search_employees(
