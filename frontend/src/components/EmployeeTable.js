@@ -20,16 +20,16 @@ export default function EmployeeTable({ employees }) {
             <tbody>
                 {employees.map((e, i) => (
                     <tr key={i}>
-                        <td>{e.firstName}</td>
-                        <td>{e.lastName}</td>
-                        <td>{e.department}</td>
-                        <td>{e.vehicle.plate}</td>
-                        <td>{e.vehicle.description}</td>
-                        <td>{e.vehicle.colour}</td>
-                        <td>{e.vehicle.make}</td>
-                        <td>{e.vehicle.model}</td>
-                        <td>{e.stallNumber}</td>
-                        <td>{e.numberOfVehicles}</td>
+                        <td>{e.FirstName}</td>
+                        <td>{e.LastName}</td>
+                        <td>{e.Department}</td>
+                        <td>{e.VehiclePlate}</td>
+                        <td>{e.VehicleDescription}</td>
+                        <td>{e.VehicleColour}</td>
+                        <td>{e.VehicleMake}</td>
+                        <td>{e.VehicleModel}</td>
+                        <td>{e.StallNumber}</td>
+                        <td>{e.NumberOfVehicles}</td>
                     </tr>
                 ))}
             </tbody>
